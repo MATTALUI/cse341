@@ -10,6 +10,9 @@ All elements of the application are running:
 - root serves us welcome message with form conatining "username"
 - submitting form hits /create-users and adds users to dummy list of users
 - visiting /users shows the list of users who are registered
+- expressjs is used
+- looks nice
+- users can submit additional information
 
 4. Briefly describe any pieces of the assignment that are not yet working correctly.
 None. Alls well!
