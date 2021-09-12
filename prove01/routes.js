@@ -1,31 +1,33 @@
 const express = require('express');
 const fs = require('fs');
+const { User } = require('./models');
 const router = express.Router();
-const path = require('path');
 
-const dummyUsers = [{
+const users = [new User({
   id: 1,
   username: "MATTALUI",
-}];
+  email: 'matt@example.com',
+  phone: '9705551234',
+  firstName: 'Matt',
+  lastName: 'Hummer',
+})];
 
 router.get('/', (req, res, next) => {
   // REQ: Return a greeting message on the "/" route
   // REQ: On the "/" page, add a <form>...
-  res.sendFile(path.join(__dirname, './views/form.html'));
+  res.render('form');
 });
 
 router.get('/users', (req, res, next) => {
   // REQ: Return a list of dummy users on the "/users" route
-  res.send(dummyUsers);
+  res.render('users', { users });
 });
 
 router.post('/create-user', (req, res, next) => {
-  const id = dummyUsers[dummyUsers.length - 1].id + 1;
-  dummyUsers.push({
-    id,
-    username: req.body.username,
-  });
-  res.sendFile(path.join(__dirname, './views/thanks.html'));
+  // TODO: add some extra validation here
+  const user = new User(req.body);
+  users.push(user);
+  res.render('thanks', { user });
 });
 
 module.exports = router;

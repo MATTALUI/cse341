@@ -1,0 +1,32 @@
+After completing the assignment, be sure to push to Github. You do not have to worry about pushing to Heroku this lesson.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your source code repository (e.g., GitHub):
+https://github.com/MATTALUI/wdd331
+
+3. Briefly list and describe the elements of the application that are functioning.
+All elements of the application are running:
+- can be started with `npm run prove01`
+- root serves us welcome message with form conatining "username"
+- submitting form hits /create-users and adds users to dummy list of users
+- visiting /users shows the list of users who are registered
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+None. Alls well!
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+Setting up a new script as a way to run an assignment-specific server.
+It's a lot more clever than having to know which directory to be in to run the server.
+Also, EJS was new for me!
+
+6. If you could change this assignment to be more effective or helpful, what would you change?
+I think clarity in the assignment would have made this smoother and a more effective learning experience.
+There were two different rubrics with different criteria for "above and beyond" and it was hard to know
+what is actually expected at a glance.
+
+7. Please select the category you feel best describes your assignment:
+  5 - Shows creativity and excels above and beyond requirements
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+  - EJS is used and pages look professional
+  - Multiple pieces of data can be submitted for a user

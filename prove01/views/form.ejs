@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Prove 01 | Sign Up</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <h1>Sign Up</h1>
+    <p>We're starting a whole, new world of adventure! If you'd like to be a part of it, please add your name to the registry using the form below. Already signed up? <a href="/users">Check out the list of registered users!</a></p>
+    <!--
+      REQ: ...add a <form> with a "username" <input> that is submitted using a
+      POST request to "/create-user" when the submit button is clicked
+    -->
+    <form method="post" action="/create-user">
+      <fieldset>
+        <legend>Sign up!</legend>
+          <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Jsmith123" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="john@example.com" required>
+          </div>
+          <div>
+            <label for="username">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="John" required>
+          </div>
+          <div>
+            <label for="username">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Smith" required>
+          </div>
+          <input type="submit" value="Finished">
+      </fieldset>
+    </form>
+  </body>
+</html>
