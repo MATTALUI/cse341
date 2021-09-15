@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
   // CORE CHALLENGE 1 -
   // HTML page is written
   res.write('<html>');
-  res.write('<head><title>Hello Browser!</Title></head>');
+  res.write('<head><title>Hello Browser!</Title><link rel="stylesheet" href="/stylesheets/main.css"></head>');
   res.write('<body>');
   res.write('<h1>Welcome to my world!</h1>');
   // navigation to your activities endpoint.
@@ -33,6 +33,7 @@ router.get('/', (req, res, next) => {
 // CORE CHALLENGE 2 -
 router.get('/activities', (req, res, next) => {
   res.write('<html>');
+  res.write('<head><link rel="stylesheet" href="/stylesheets/main.css"></head>');
   res.write('<body>');
   res.write('<ul>');
   // Loop through activities using for...of loop to display the list
@@ -41,7 +42,7 @@ router.get('/activities', (req, res, next) => {
   }
   res.write('</ul>');
   // Form for "./add-activity".
-  res.write('<form action="./add-activity" method="POST">');
+  res.write('<form action="/ta01/add-activity" method="POST">');
   res.write('<input type="text" name="newActivity">');
   res.write('<button type="submit">Submit</button>');
   res.write('</form>');
@@ -53,21 +54,26 @@ router.get('/activities', (req, res, next) => {
 
 // CORE CHALLENGE 3 -
 router.post('/add-activity', (req, res, next) => {
-  const body = [];
-  req.on('data', (chunk) => {
-    body.push(chunk);
-  });
-  return req.on('end', () => {
-    const parsedBody = Buffer.concat(body).toString();
-    const newActivity = parsedBody.split('=')[1];
-    // Console log seen in terminal, may be encoded, but isn't important for now
-    console.log(newActivity);
-    activities.push(newActivity);
+  activities.push(req.body.newActivity || '[EMPTY ACTIVITY]');
 
-    // Remain on './activities' url.
-    res.writeHead(302, { Location: 'activities' });
-    res.end();
-  });
+  res.writeHead(302, { Location: 'activities' }); // Redirect to home
+
+  return res.end();
+  // const body = [];
+  // req.on('data', (chunk) => {
+  //   body.push(chunk);
+  // });
+  // return req.on('end', () => {
+  //   const parsedBody = Buffer.concat(body).toString();
+  //   const newActivity = parsedBody.split('=')[1];
+  //   // Console log seen in terminal, may be encoded, but isn't important for now
+  //   console.log(newActivity);
+  //   activities.push(newActivity);
+  //
+  //   // Remain on './activities' url.
+  //   res.writeHead(302, { Location: 'activities' });
+  //   res.end();
+  // });
 });
 
 /***************************************************************************
@@ -151,12 +157,10 @@ router.get('/stretch-3', (req, res, next) => {
   return res.end(); // Remember to end the response!
 });
 router.post('/stretch-3', (req, res, next) => {
-  console.log('Post request!');
   const body = [];
   req.on('data', (chunk) => {
     body.push(chunk);
   });
-  console.log(body);
 
   return req.on('end', () => {
     // A let is appropriate here because we'll be modifying it.

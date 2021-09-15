@@ -11,6 +11,7 @@ All elements of the application are running:
 - submitting form hits /create-users and adds users to dummy list of users
 - visiting /users shows the list of users who are registered
 - expressjs is used
+- ejs
 - looks nice
 - users can submit additional information
 

@@ -15,19 +15,20 @@ const users = [new User({
 router.get('/', (req, res, next) => {
   // REQ: Return a greeting message on the "/" route
   // REQ: On the "/" page, add a <form>...
-  res.render('form');
+  return res.render('form');
 });
 
 router.get('/users', (req, res, next) => {
   // REQ: Return a list of dummy users on the "/users" route
-  res.render('users', { users });
+  return res.render('users', { users });
 });
 
 router.post('/create-user', (req, res, next) => {
   // TODO: add some extra validation here
   const user = new User(req.body);
   users.push(user);
-  res.render('thanks', { user });
+
+  return res.render('thanks', { user });
 });
 
 module.exports = router;
