@@ -1,0 +1,8 @@
+.book-cover {
+  max-width: 7rem;
+  max-height: 7rem;
+}
+
+.disabled {
+  cursor: not-allowed !important;
+}

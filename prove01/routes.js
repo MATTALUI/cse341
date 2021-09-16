@@ -4,7 +4,6 @@ const { User } = require('./models');
 const router = express.Router();
 
 const users = [new User({
-  id: 1,
   username: "MATTALUI",
   email: 'matt@example.com',
   phone: '9705551234',
