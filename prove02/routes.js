@@ -56,7 +56,7 @@ router.post('/books/:bookId', (req, res, next) => {
 
 router.delete('/books/:bookId', (req, res, next) => {
   // TODO: add some extra validation here
-  books = books.filter(book => book.id === req.params.bookId);
+  books = books.filter(book => book.id !== req.params.bookId);
 
   // This route gets hit with AJAX, so a status is enough. No Need to redirect.
   return res.sendStatus(204); // No Content
