@@ -3,6 +3,7 @@ const fs = require('fs');
 const { Book } = require('./models');
 const router = express.Router();
 
+// REQ: ...(When this page first loads, no products will be present).
 let books = [
   // new Book({ title: "Cats from the Moon", authorName: "Matthew Hummer", summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}),
   // new Book({ title: "Dr. Octopus Goes to the Zoo", authorName: "Matthew Hummer", summary: "The classic tale of an old octopus's trip to the zoo and the friends that he makes along the way."}),
@@ -12,8 +13,7 @@ let books = [
 // UI ROUTES
 ////////////////////////////////
 router.get('/', (req, res, next) => {
-  // REQ: Return a greeting message on the "/" route
-  // REQ: On the "/" page, add a <form>...
+  // REQ: Use GET to display a page with all books...
   return res.render('index', { books });
 });
 
@@ -58,7 +58,7 @@ router.delete('/books/:bookId', (req, res, next) => {
   // TODO: add some extra validation here
   books = books.filter(book => book.id !== req.params.bookId);
 
-  // This route gets hit with AJAX, so a status is enough. No Need to redirect.
+  // This route gets hit with AJAX, so a successful status is enough. No Need to redirect.
   return res.sendStatus(204); // No Content
 });
 

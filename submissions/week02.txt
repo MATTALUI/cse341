@@ -1,0 +1,32 @@
+After completing the assignment, be sure to push to Github and Heroku.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application (e.g., Heroku):
+- https://mhummer-cse341-bookstore.herokuapp.com/
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+- https://github.com/MATTALUI/cse341/tree/master/prove02
+
+3. Briefly list and describe the elements of the application that are functioning.
+- GET request on index displays a list of all books. When page first loads no books are present. (Unless they've been added since the server started...)
+- Index page contains "add product link"
+- New Product form creates a new book with at least a title key
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+- Nothing. Everything works!
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+- I used this assignment as an excuse to use the new Bootstrap 5.
+
+6. If you could change this assignment to be more effective or helpful, what would you change?
+- Nothing. This was a good assignment.
+
+7. Please select the category you feel best describes your assignment:
+- 5 - Shows creativity and excels above and beyond requirements
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+- Express and EJS are used, and pages look professional
+- Used the new Bootstrap 5
+- Has full CRUD operations
+- User can input extra book information in the form (author, summary)
+- EJS is used well and more than one book is recorded and displayed
