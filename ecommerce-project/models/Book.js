@@ -93,4 +93,12 @@ Book.prototype.toString = function() {
   return `${this.title} (${this.authorName})`;
 };
 
+Book.prototype.priceString = function() {
+  if (this.price > 0) {
+    return `$${this.price.toFixed(2)}`;
+  }
+
+  return 'FREE';
+};
+
 module.exports = Book;

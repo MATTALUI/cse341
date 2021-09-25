@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% include ../common/header.ejs %>
+    <title>Prove02 | Books</title>
+    <script src="/books.js" charset="utf-8" defer></script>
+  </head>
+  <body>
+    <% include ../common/nav.ejs %>
+    <div class="container">
+      <div class="row pt-3x">
+        <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
+          <h1>My Cart</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Cart Items</h2>
+              <% if (cartBooksAgregate.length === 0) {%>
+                <div class="alert alert-primary mt-3" role="alert">
+                  <span>You have no books in your cart!</span>
+                </div>
+              <%} else {%>
+                <table class="w-100">
+                  <thead>
+                    <tr>
+                      <th>Book</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% cartBooksAgregate.forEach(bookData => {%>
+                      <tr>
+                        <td class="flex-1"><%= bookData.book.toString() %></td>
+                        <td class="flex-1"><%= bookData.quantity %></td>
+                        <td class="flex-1"><%= `${bookData.book.priceString()}` %></td>
+                        <td class="flex-1"><%= bookData.total %></td>
+                      </tr>
+                    <%});%>
+                  </tbody>
+                </table>
+              <%};%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

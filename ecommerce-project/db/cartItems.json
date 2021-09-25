@@ -1,5 +1,13 @@
 [{
   "id": "5db4a924-4176-4835-810d-fa549cfe1f37",
-  "bookId": "d75e420a-6346-47ad-9ba1-31273cc0c007",
+  "itemId": "d75e420a-6346-47ad-9ba1-31273cc0c007",
+  "dateAdded": "Sat Sep 25 2021 02:31:25 GMT-0600 (Mountain Daylight Time)"
+},{
+  "id": "32ce8d15-7cbf-45ff-ac29-d0433c72129e",
+  "itemId": "d75e420a-6346-47ad-9ba1-31273cc0c007",
+  "dateAdded": "Sat Sep 25 2021 02:31:25 GMT-0600 (Mountain Daylight Time)"
+},{
+  "id": "25419f03-dcec-4ba8-a150-c778e7afa986",
+  "itemId": "91004c81-52be-422c-a3e5-ae3c42196a8d",
   "dateAdded": "Sat Sep 25 2021 02:31:25 GMT-0600 (Mountain Daylight Time)"
 }]

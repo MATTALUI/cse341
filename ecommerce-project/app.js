@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const booksRouter = require('./routers/books');
 const cartItemsRouter = require('./routers/cartItems');
 const path = require('path');
+const CustomMiddleware = require('./middleware');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -12,6 +13,8 @@ app
   .use(express.static(path.join(__dirname, '/static')))
   .use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   .use(bodyParser.json()) // parse application/json
+  .use(CustomMiddleware.setUser)
+  .use(CustomMiddleware.regsiterUsersCartItems)
   .use('/books', booksRouter)
   .use('/cart-items', cartItemsRouter)
   .get('/', (req,res,next) => res.redirect('/books')) // At least for now, we only sell books...

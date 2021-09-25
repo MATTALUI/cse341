@@ -3,18 +3,18 @@ const Book = require('../models/Book');
 const BooksController = {
   index: (req, res, next) => {
     return Book.all()
-      .then(books => res.render('books/index', { books }))
+      .then(books => res.render('books/index', { books, cartItems: req.cartItems }))
       .catch(err => console.error(err) || res.sendStatus(500));
   },
   new: (req, res, next) => {
     const book = new Book();
 
-    return res.render('books/form', { book });
+    return res.render('books/form', { book, cartItems: req.cartItems });
   },
   show: (req, res, next) => {},
   edit: (req, res, next) => {
     return Book.find(req.params.bookId)
-      .then(book => res.render('books/form', { book }))
+      .then(book => res.render('books/form', { book, cartItems: req.cartItems }))
       .catch(err => console.error(err) || res.sendStatus(500));
   },
   create: (req, res, next) => {
