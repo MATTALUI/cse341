@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const prove02Router = require('./routes');
+const booksRouter = require('./routers/books');
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,7 +11,9 @@ app
   .use(express.static(path.join(__dirname, '/static')))
   .use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   .use(bodyParser.json()) // parse application/json
-  .use('/', prove02Router)
+  .use('/books', booksRouter)
+  .get('/', (req,res,next) => res.redirect('/books')) // At least for now, we only sell books...
+  .get('*',  (req,res,next) => res.sendStatus(404)) // Not found. :(
   .listen(port, '0.0.0.0', () => {
     console.log(`listening on 0.0.0.0:${port}`);
   });

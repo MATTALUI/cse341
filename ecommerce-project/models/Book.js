@@ -8,12 +8,22 @@ const BOOK_DB = path.join(__dirname, '..', 'db/books.json');
 ///////////////////////////////////////////////////////////////////////////////
 // Model Definition                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-function Book({ id, title, authorName, summary, image }={}) {
+function Book({
+  id,
+  title,
+  authorName,
+  summary,
+  image,
+  createdAt,
+  updatedAt
+}={}) {
   this.id = id || uuidv4();
   this.title = title;
   this.authorName = authorName;
   this.summary = summary;
   this.image = image;
+  this.createdAt = createdAt || Date().toString();
+  this.updatedAt = updatedAt || Date().toString();
 }
 
 
@@ -34,6 +44,7 @@ Book.create = function(bookData) {
   return new Promise((resolve, reject) => {
     // TODO: add some extra validation here
     const book = new Book(bookData);
+    // TODO: Double-check timestamp management
     Book.all().then(books => {
       books.push(book);
       fs.writeFile(BOOK_DB, JSON.stringify(books), err =>
@@ -47,6 +58,7 @@ Book.update = function(bookData) {
   return new Promise((resolve, reject) => {
     // TODO: add some extra validation here
     const book = new Book(bookData);
+    // TODO: manage timestamps here...
     Book.all().then(books => {
       const index = books.findIndex(b => b.id === book.id);
       books[index] = book;
@@ -75,7 +87,8 @@ Book.destroy = function(bookId) {
 ///////////////////////////////////////////////////////////////////////////////
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-Book.prototype.instanceMethod = function() {
+Book.prototype.toString = function() {
+  return `${this.title} (${this.authorName})`;
 };
 
 module.exports = Book;
