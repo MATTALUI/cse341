@@ -15,13 +15,15 @@ function Book({
   summary,
   image,
   createdAt,
-  updatedAt
+  updatedAt,
+  price,
 }={}) {
   this.id = id || uuidv4();
   this.title = title;
   this.authorName = authorName;
   this.summary = summary;
   this.image = image;
+  this.price = price || 0;
   this.createdAt = createdAt || Date().toString();
   this.updatedAt = updatedAt || Date().toString();
 }
