@@ -10,7 +10,9 @@
     "start": "nodemon index.js",
     "test": "node test.js",
     "prove01": "nodemon prove01/app.js",
-    "prove02": "nodemon prove02/app.js"
+    "prove02": "nodemon ecommerce-project/app.js",
+    "prove03": "nodemon ecommerce-project/app.js",
+    "ecommerce": "nodemon ecommerce-project/app.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

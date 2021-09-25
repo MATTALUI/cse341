@@ -1,20 +1,15 @@
 const express = require('express');
 const fs = require('fs');
-const { Book } = require('./models');
+const Book = require('./models/Book');
 const router = express.Router();
-
-// REQ: ...(When this page first loads, no products will be present).
-let books = [
-  // new Book({ title: "Cats from the Moon", authorName: "Matthew Hummer", summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}),
-  // new Book({ title: "Dr. Octopus Goes to the Zoo", authorName: "Matthew Hummer", summary: "The classic tale of an old octopus's trip to the zoo and the friends that he makes along the way."}),
-];
 
 /////////////////////////////////
 // UI ROUTES
 ////////////////////////////////
 router.get('/', (req, res, next) => {
-  // REQ: Use GET to display a page with all books...
-  return res.render('index', { books });
+  return Book.all()
+    .then(books => res.render('index', { books }))
+    .catch(err => console.error(err) || res.sendStatus(500));
 });
 
 router.get('/books/new', (req, res, next) => {
@@ -26,40 +21,31 @@ router.get('/books/new', (req, res, next) => {
 router.get('/books/:bookId', (req, res, next) => {});
 
 router.get('/books/:bookId/edit', (req, res, next) => {
-  const book = books.find(book => book.id === req.params.bookId);
-
-  return res.render('form', { book });
+  return Book.find(req.params.bookId)
+    .then(book => res.render('form', { book }))
+    .catch(err => console.error(err) || res.sendStatus(500));
 });
 
 /////////////////////////////////
 // API ROUTES
 ////////////////////////////////
 router.post('/books', (req, res, next) => {
-  // TODO: add some extra validation here
-  books.push(new Book(req.body));
-
-  res.writeHead(302, { Location: '/' }); // Redirect
-  return res.end();
+  return Book.create(req.body)
+    .then(book => res.redirect('/'))
+    .catch(err => console.error(err) || res.sendStatus(500));
 });
 
 router.post('/books/:bookId', (req, res, next) => {
-  // TODO: add some extra validation here
-  const index = books.findIndex(book => book.id === req.params.bookId);
-  books[index] = {
-    id: req.params.bookId,
-    ...req.body,
-  };
-
-  res.writeHead(302, { Location: '/' }); // Redirect
-  return res.end();
+  return Book.update({ id: req.params.bookId, ...req.body, })
+    .then(book => res.redirect('/'))
+    .catch(err => console.error(err) || res.sendStatus(500));
 });
 
 router.delete('/books/:bookId', (req, res, next) => {
-  // TODO: add some extra validation here
-  books = books.filter(book => book.id !== req.params.bookId);
-
-  // This route gets hit with AJAX, so a successful status is enough. No Need to redirect.
-  return res.sendStatus(204); // No Content
+  // NOTE: This route is hit by AJAX, so we're okay just sending the status
+  return Book.destroy(req.params.bookId)
+    .then(book => res.sendStatus(204)) // No Content
+    .catch(err => console.error(err) || res.sendStatus(500));
 });
 
 module.exports = router;
