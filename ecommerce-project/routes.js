@@ -8,21 +8,21 @@ const router = express.Router();
 ////////////////////////////////
 router.get('/', (req, res, next) => {
   return Book.all()
-    .then(books => res.render('index', { books }))
+    .then(books => res.render('books/index', { books }))
     .catch(err => console.error(err) || res.sendStatus(500));
 });
 
 router.get('/books/new', (req, res, next) => {
   const book = new Book();
 
-  return res.render('form', { book });
+  return res.render('books/form', { book });
 });
 
 router.get('/books/:bookId', (req, res, next) => {});
 
 router.get('/books/:bookId/edit', (req, res, next) => {
   return Book.find(req.params.bookId)
-    .then(book => res.render('form', { book }))
+    .then(book => res.render('books/form', { book }))
     .catch(err => console.error(err) || res.sendStatus(500));
 });
 
