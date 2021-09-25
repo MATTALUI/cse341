@@ -1,0 +1,34 @@
+After completing the assignment, be sure to push to Github and Heroku.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application (e.g., Heroku):
+https://mhummer-cse341-bookstore.herokuapp.com
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+https://github.com/MATTALUI/cse341
+
+3. Briefly list and describe the elements of the application that are functioning.
+- It all works!
+- Can read a list of all books
+- Can add books to the catalog of products
+- can can edit books that have been added
+- can delete books that have been added
+- can see a list of all the books that have been added to the cart
+- can manage cart items
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+- None!
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+- I was able to tinker with a lot of different ways to handle promises. I was trying to write some models that emulate Rails's ORM with it, which lead to some fun discoveries.
+
+6. If you could change this assignment to be more effective or helpful, what would you change?
+
+7. Please select the category you feel best describes your assignment:
+  5 - Shows creativity and excels above and beyond requirements
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+- Product structure follows MVC and is easy to understand
+- JSON data is detailed, or there are multiple json files for different models
+- data from JSON is displayed and looks professional
+- multiple dynamic routes are defined and make sense in the project
