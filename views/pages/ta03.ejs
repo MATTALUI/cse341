@@ -3,6 +3,33 @@
 
 <head>
   <% include ../includes/header.ejs %>
+  <style media="screen">
+    .media {
+      /* background-color: #eee; */
+      border: 1px solid #555;
+      /* border-radius: 1rem; */
+      margin-bottom: 2rem;
+      padding: 0.5rem;
+    }
+    .media-object {
+      max-width: 10rem;
+      max-height: 10rem;
+    }
+
+    .media-body {
+      font-size: 2rem;
+    }
+
+    .media-heading{
+      font-weight: bold;
+      font-size: 3rem;
+    }
+
+    .media-price {
+      font-size: 2rem;
+      color: #999;
+    }
+  </style>
 </head>
 
 <body>
@@ -12,14 +39,50 @@
         <h1>
           <%= title %>
         </h1>
-        <p>This is the placeholder for Team Activity 03</p>
       </div>
     </div>
     <div class="container">
+      <div class="row">
+        <!-- <div class="col-sm-12"> -->
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search" value="<%=search%>" name="search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        <!-- </div> -->
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <% products.forEach(product => {%>
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                  <img class="media-object" src="<%= product.imageUrl %>" alt="image">
+                </a>
+              </div>
+              <div class="media-body">
+                <span class="media-heading">
+                  <span class="media-title"><%= product.name %></span>
+                  <span class="media-price">$<%= product.price %></span>
+                </span>
+                <p>
+                  <%= product.description %>
+                </p>
+                <div class="media-tags">
+                  <% product.tags.forEach(tag => {%>
+                    <span class="badge">
+                      <%= tag %>
+                    </span>
+                  <% }); %>
+                </div>
 
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
     </div>
-
-
 </body>
 
 </html>

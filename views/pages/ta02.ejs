@@ -3,32 +3,39 @@
 
 <head>
   <% include ../includes/header.ejs %>
+  <style media="screen">
+    .mt-1 {
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container mt-1">
     <div class="row">
-      <ul class="list-group">
-        <% users.forEach(function(user){ %>
-          <li class="list-group-item">
-            <%= user %>
-          </li>
-          <% }); %>
-      </ul>
+      <div class="col-sm-12">
+        <ul class="list-group">
+          <% users.forEach(function(user){ %>
+            <li class="list-group-item">
+              <%= user %>
+            </li>
+            <% }); %>
+        </ul>
+      </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
         <form class="" action="/ta02/addUser" method="post">
           <label for="user">New User</label>
           <input class="form-control" type="text" id="user" name="user">
-          <input type="submit" class="btn btn-primary" value="Save">
+          <input type="submit" class="mt-1 btn btn-primary" value="Save">
         </form>
       </div>
         <div class="col-sm-6">
           <form class="" action="/ta02/deleteUser" method="post">
             <label for="removeUser">Remove User</label>
             <input class="form-control" type="text" id="removeUser" name="user">
-            <input type="submit" class="btn btn-danger" value="Remove">
+            <input type="submit" class="mt-1 btn btn-danger" value="Remove">
           </form>
         </div>
 

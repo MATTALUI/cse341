@@ -3,7 +3,8 @@
 const express = require('express');
 const router = express.Router();
 
-const users = ['Matt', 'Annie', 'Ruby'];
+let users = ['Matt', 'Annie', 'Ruby', 'Abby',];
+const DEFAULT_NAME = "[NO NAME ENTERED]";
 router.get('/', (req, res, next) => {
   res.render('pages/ta02', {
     title: 'Team Activity 02 I wanna throw up!',
@@ -15,16 +16,15 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/addUser', (req,res,next) => {
-  users.push(req.body.user || "[NO NAME ENTERED]");
+  users.push(req.body.user || DEFAULT_NAME);
 
   res.writeHead(302, { Location: '/ta02' }); // Redirect
   return res.end();
 });
 
 router.post('/deleteUser', (req,res,next) => {
-  const user = req.body.user || "[NO NAME ENTERED]";
-  const index = users.indexOf(user);
-  users.splice(index, 1);
+  const submission = req.body.user || DEFAULT_NAME;
+  users = users.filter(u => u !== submission);
 
   res.writeHead(302, { Location: '/ta02' }); // Redirect
   return res.end();
