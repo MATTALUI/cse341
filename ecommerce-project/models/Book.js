@@ -23,7 +23,7 @@ function Book({
   this.authorName = authorName;
   this.summary = summary;
   this.image = image;
-  this.price = price || 0;
+  this.price = +Math.max(0, price).toFixed(2);
   this.createdAt = createdAt || Date().toString();
   this.updatedAt = updatedAt || Date().toString();
 }
