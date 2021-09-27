@@ -4,11 +4,13 @@
     <div>
       <a href="/cart-items" class="btn btn-primary" aria-label="Cart">
         <i class="fa fa-shopping-cart"></i>
-        <% try{%>
-          <%= `(${cartItems.length})` %>
-        <% }catch{%>
-          <%= "(0)" %>
-        <% }%>
+        <span id="cart-count">
+          <% try{%>
+            <%= `(${cartItems.length})` %>
+          <% }catch{%>
+            <%= "(0)" %>
+          <% }%>
+        </span>
       </a>
     </div>
   </div>

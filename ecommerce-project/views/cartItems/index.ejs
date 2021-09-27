@@ -4,9 +4,19 @@
     <% include ../common/header.ejs %>
     <title>Prove02 | Books</title>
     <script src="/books.js" charset="utf-8" defer></script>
+    <style media="screen">
+      .cart-total{
+        font-weight: bold;
+        border-top: 1px solid #ccc;
+      }
+      tbody tr:last-of-type {
+        border-top: 1px solid #ccc;
+      }
+    </style>
   </head>
   <body>
     <% include ../common/nav.ejs %>
+    <% include ../common/toaster.ejs %>
     <div class="container">
       <div class="row pt-3x">
         <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
@@ -38,9 +48,13 @@
                         <td class="flex-1"><%= bookData.book.toString() %></td>
                         <td class="flex-1"><%= bookData.quantity %></td>
                         <td class="flex-1"><%= `${bookData.book.priceString()}` %></td>
-                        <td class="flex-1"><%= bookData.total %></td>
+                        <td class="flex-1"><%= '$'+ bookData.total %></td>
                       </tr>
                     <%});%>
+                    <tr>
+                      <td colspan="3"></td>
+                      <td class="cart-total">$<%= grandTotal %></td>
+                    </tr>
                   </tbody>
                 </table>
               <%};%>

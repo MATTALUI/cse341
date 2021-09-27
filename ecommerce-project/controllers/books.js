@@ -28,9 +28,8 @@ const BooksController = {
       .catch(err => console.error(err) || res.sendStatus(500));
   },
   destroy: (req, res, next) => {
-    // NOTE: This route is hit by AJAX, so we're okay just sending the status
     return Book.destroy(req.params.bookId)
-      .then(book => res.sendStatus(204)) // No Content
+      .then(book => res.send(book))
       .catch(err => console.error(err) || res.sendStatus(500));
   },
 };

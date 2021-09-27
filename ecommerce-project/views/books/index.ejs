@@ -7,6 +7,7 @@
   </head>
   <body>
     <% include ../common/nav.ejs %>
+    <% include ../common/toaster.ejs %>
     <div class="container mb-3">
       <div class="row pt-3x">
         <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
@@ -21,7 +22,7 @@
             </div>
           <% } %>
           <% books.forEach(function(book){ %>
-            <li class="list-group-item bg-light d-flex book-item">
+            <li class="list-group-item bg-light d-flex book-item" data-id="<%= book.id %>" data-headline="<%= book.toString() %>">
               <img src="https://picsum.photos/200/200" alt="cover of the book" class="img-thumbnail me-3 book-cover">
               <div class="flex-grow-1">
                 <div class="d-flex justify-content-between align-items-start mb-3">
@@ -32,13 +33,13 @@
                   <div class="btn-group">
                     <!-- <a href="/books/<%= book.id %>" class="btn btn-sm btn-primary disabled" disabled>View Book</a> -->
                     <a href="/books/<%= book.id %>/edit" class="btn btn-sm btn-link">Edit Book</a>
-                    <button class="btn btn-sm btn-link delete-book" data-id="<%= book.id %>">Delete Book</button>
+                    <button class="btn btn-sm btn-link delete-book">Delete Book</button>
                   </div>
                 </div>
                 <p><%= book.summary %></p>
                 <div class="d-flex justify-content-end">
                   <div class="btn-group">
-                    <button class="btn btn-lg btn-primary delete-book" data-id="<%= book.id %>" disabled>Add to Cart (<%= book.priceString() %>)</button>
+                    <button class="btn btn-lg btn-primary add-to-cart">Add to Cart (<%= book.priceString() %>)</button>
                   </div>
                 </div>
               </div>

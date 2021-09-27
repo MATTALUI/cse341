@@ -12,7 +12,7 @@ router.get('/', CartItemsController.index);
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
-// router.post('', CartItemsController.create);
+router.post('', CartItemsController.create);
 // router.delete('/:itemId', CartItemsController.destroy);
 
 module.exports = router;

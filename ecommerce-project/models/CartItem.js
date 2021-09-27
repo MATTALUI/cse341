@@ -15,7 +15,7 @@ function CartItem({
 }={}) {
   this.id = id || uuidv4();
   this.itemId = itemId;
-  this.dateAdded = dateAdded;
+  this.dateAdded = dateAdded || Date().toString();
 }
 
 

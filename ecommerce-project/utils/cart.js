@@ -11,7 +11,7 @@ module.exports = {
           quantity: 1,
         };
       }
-      bookHash[book.id].total = `$${(bookHash[book.id].quantity * bookHash[book.id].book.price).toFixed(2)}`;
+      bookHash[book.id].total = +(bookHash[book.id].quantity * bookHash[book.id].book.price).toFixed(2);
     });
 
     return Object.values(bookHash);
