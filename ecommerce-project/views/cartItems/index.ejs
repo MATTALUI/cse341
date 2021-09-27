@@ -48,7 +48,7 @@
                         <td class="flex-1"><%= bookData.book.toString() %></td>
                         <td class="flex-1"><%= bookData.quantity %></td>
                         <td class="flex-1"><%= `${bookData.book.priceString()}` %></td>
-                        <td class="flex-1"><%= '$'+ bookData.total %></td>
+                        <td class="flex-1"><%= '$'+ bookData.total.toFixed(2) %></td>
                       </tr>
                     <%});%>
                     <tr>
