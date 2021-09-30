@@ -18,7 +18,7 @@
         const headline = $(event.target).closest('.book-item').data('headline');
 
         $(event.target).closest('.book-item').remove();
-        deltaCartItems(-responseData.removed.length);
+        deltaCartItems(-responseData.removed.deletedCount);
         makeToast(`<em class="fw-bold">${headline}</em> was successfully deleted.`, {
           delay: 6000,
           color: 'success',

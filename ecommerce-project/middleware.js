@@ -8,7 +8,7 @@ module.exports = {
   },
 
   regsiterUsersCartItems: (req, res, next) => {
-    CartItem.all().then(items => {
+    CartItem.find().then(items => {
       req.cartItems = items;
       next();
     });
