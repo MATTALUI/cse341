@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
       console.error(err);
       return res.sendStatus(500);
     }
-    const search = req.query.search;
+    const search = req.query.search || '';
     const products = JSON.parse(data).filter(
       product =>
         product.name.toLowerCase().includes(search.toLowerCase()) ||
