@@ -1,4 +1,11 @@
 (() => {
+  const deltaCartItems = delta => {
+    const $cartCount = $('#cart-count');
+    let count = +$cartCount.html().match(/\d{1,}/)[0];
+    count += delta;
+    $('#cart-count').html(`(${count})`);
+  };
+
   const deleteBook = event => {
     // TODO: Use a modal or something less annoyting here...
     if (!confirm('This will remove this book from the list of available products. There is no going back. Are you sure?')) {
@@ -7,9 +14,15 @@
 
     const bookId = $(event.target).closest('.book-item').data('id');
     $.ajax(`/books/${bookId}`, { method: 'DELETE' })
-      .then(() => {
-        $(event.target).closest('.book-item').remove();
+      .then(responseData => {
+        const headline = $(event.target).closest('.book-item').data('headline');
 
+        $(event.target).closest('.book-item').remove();
+        deltaCartItems(-responseData.removed.length);
+        makeToast(`<em class="fw-bold">${headline}</em> was successfully deleted.`, {
+          delay: 6000,
+          color: 'success',
+        });
         if ($('.book-item').length === 0) {
           $('.list-group').append(`
             <div class="alert alert-primary" role="alert">
@@ -26,11 +39,8 @@
 
     $.ajax('/cart-items', { method: 'POST', data: { itemId } })
       .then(cartItem => {
-        const $cartCount = $('#cart-count');
         const headline = $(event.target).closest('.book-item').data('headline');
-        let count = +$cartCount.html().match(/\d{1,}/)[0];
-        count++;
-        $('#cart-count').html(`(${count})`);
+        deltaCartItems(1);
         makeToast(`<em class="fw-bold">${headline}</em> was successfully added to your cart!`, {
           delay: 6000,
           color: 'success',

@@ -1,6 +1,7 @@
 const CartItem = require('../models/CartItem');
 const Book = require('../models/Book');
 const { agregateCartBooks } = require('../utils/cart');
+const { logAndSendError } = require('../utils/response');
 
 const CartItemsController = {
   index: (req, res, next) => {
@@ -18,7 +19,7 @@ const CartItemsController = {
   create: (req, res, next) => {
     CartItem.create(req.body)
       .then(ci => res.send(ci))
-      .catch(err => console.error(err) || res.sendStatus(500));
+      .catch(logAndSendError(res));
   },
 };
 

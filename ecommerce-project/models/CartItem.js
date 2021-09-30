@@ -75,6 +75,26 @@ CartItem.destroy = function(itemId) {
   });
 };
 
+CartItem.destroyAllForBook = function(bookId) {
+  return new Promise((resolve, reject) => {
+    // TODO: add some extra validation here
+    CartItem.all().then(items => {
+      const removed = [];
+      const keptItems = items.filter(b => {
+        const keep = b.itemId !== bookId;
+        if (!keep) {
+          removed.push(b);
+        }
+
+        return keep;
+      });
+      fs.writeFile(CART_ITEM_DB, JSON.stringify(keptItems), err =>
+        err ? reject(error) : resolve(removed)
+      );
+    });
+  });
+};
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Instance Methods                                                          //
