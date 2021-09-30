@@ -8,6 +8,4 @@ npm-debug.log
 .DS_Store
 
 # Docker
-Dockerfile
-docker-compose.yml
 ecommerce-project/db/books.json
