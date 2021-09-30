@@ -22,9 +22,6 @@ const corsOptions = {
   origin: "https://mhummer-cse341-bookstore.herokuapp.com/",
   optionsSuccessStatus: 200
 };
-console.log("===========");
-console.log(MONGO_URL);
-console.log("===========");
 
 app
   .set('view engine', 'ejs')

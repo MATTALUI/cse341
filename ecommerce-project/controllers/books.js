@@ -4,7 +4,7 @@ const { logAndSendError } = require('../utils/response');
 
 const BooksController = {
   index: (req, res, next) => {
-    return Book.all()
+    return Book.find().exec()
       .then(books => res.render('books/index', { books, cartItems: req.cartItems }))
       .catch(logAndSendError(res));
   },
@@ -15,7 +15,7 @@ const BooksController = {
   },
   show: (req, res, next) => {},
   edit: (req, res, next) => {
-    return Book.find(req.params.bookId)
+    return Book.findById(req.params.bookId)
       .then(book => res.render('books/form', { book, cartItems: req.cartItems }))
       .catch(logAndSendError(res));
   },
@@ -25,12 +25,12 @@ const BooksController = {
       .catch(logAndSendError(res));
   },
   update: (req, res, next) => {
-    return Book.update({ id: req.params.bookId, ...req.body, })
+    return Book.findById(req.params.bookId).update(req.body)
       .then(book => res.redirect('/'))
       .catch(logAndSendError(res));
   },
   destroy: (req, res, next) => {
-    return Book.destroy(req.params.bookId)
+    return Book.findOneAndDelete(req.params.bookId)
       .then(book => CartItem.destroyAllForBook(book.id)
         .then(removed => res.send({ book, removed }))
         .catch(logAndSendError(res))
