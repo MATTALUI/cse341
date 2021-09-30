@@ -9,3 +9,4 @@ npm-debug.log
 
 # Docker
 ecommerce-project/db/books.json
+mongo-volume

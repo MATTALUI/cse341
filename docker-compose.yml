@@ -1,8 +1,25 @@
 version: "3.9"
 services:
   ecommerce-bookstore:
+    container_name: "ecommerce-bookstore"
     build:
-      context: .
-      dockerfile: ./ecommerce-project/Dockerfile
+      context: "."
+      dockerfile: "./ecommerce-project/Dockerfile"
+    environment:
+      - "MONGO_URL=THIS is a test"
     ports:
       - "3000:3000"
+    depends_on:
+      - "mongo"
+  mongo:
+    image: "mongo"
+    container_name: "mongo"
+    environment:
+      - "MONGO_INITDB_DATABASE=matts-todos"
+      - "MONGO_INITDB_ROOT_USERNAME=rooter"
+      - "MONGO_INITDB_ROOT_PASSWORD=secret"
+    ports:
+      - "27017-27019:27017-27019"
+    volumes:
+      - "./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro"
+      - "./mongo-volume:/data/db"
