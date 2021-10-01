@@ -2,16 +2,23 @@
   <div class="container">
     <a class="navbar-brand btn btn-light" href="/">My Bookshop</a>
     <div>
-      <a href="/cart-items" class="btn btn-primary" aria-label="Cart">
-        <i class="fa fa-shopping-cart"></i>
-        <span id="cart-count">
-          <% try{%>
-            <%= `(${cartItems.length})` %>
-          <% }catch{%>
-            <%= "(0)" %>
-          <% }%>
-        </span>
-      </a>
+      <div class="btn-group">
+        <% if (currentUser) {%>
+          <a href="/cart-items" class="btn btn-primary" aria-label="Cart">
+            <i class="fa fa-shopping-cart"></i>
+            <span id="cart-count">
+              <% try{%>
+                <%= `(${cartItems.length})` %>
+              <% }catch{%>
+                <%= "(0)" %>
+              <% }%>
+            </span>
+          </a>
+          <a href="/auth/logout" class="btn btn-warning">Log Out</a>
+        <% } else {%>
+          <a href="/auth/login" class="btn btn-success">Log In</a>
+        <% } %>
+      </div>
     </div>
   </div>
 </nav>

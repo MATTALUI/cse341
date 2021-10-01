@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const booksRouter = require('./routers/books');
 const cartItemsRouter = require('./routers/cartItems');
+const authRouter = require('./routers/auth');
 const CustomMiddleware = require('./middleware');
 
 const app = express();
@@ -30,10 +32,12 @@ app
   .use(express.static(path.join(__dirname, '/static')))
   .use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   .use(bodyParser.json()) // parse application/json
+  .use(cookieParser())
   .use(CustomMiddleware.setUser)
   .use(CustomMiddleware.regsiterUsersCartItems)
   .use('/books', booksRouter)
   .use('/cart-items', cartItemsRouter)
+  .use('/auth', authRouter)
   .get('/', (req,res,next) => res.redirect('/books')) // At least for now, we only sell books...
   .get('*',  (req,res,next) => res.sendStatus(404)); // Not found. :(
 

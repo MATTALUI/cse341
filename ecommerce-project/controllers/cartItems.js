@@ -11,13 +11,14 @@ const CartItemsController = {
     const grandTotal = cartBooksAgregate.reduce((total, ag) => +(total + ag.total).toFixed(2), 0);
     res.render('cartItems/index', {
       cartItems: req.cartItems,
+      currentUser: req.user,
       cartBooksAgregate,
       grandTotal,
     });
   },
   create: (req, res, next) => {
     Book.findById(req.body.itemId)
-      .then(book => CartItem.create({ item: book })
+      .then(book => CartItem.create({ item: book, user: req.user })
         .then(ci => res.send(ci))
         .catch(logAndSendError(res))
       )

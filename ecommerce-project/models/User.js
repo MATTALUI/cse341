@@ -1,38 +1,35 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
-const User = require('./User');
 
 ///////////////////////////////////////////////////////////////////////////////
 // Model Definition                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-const BookSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   _id: { type: String, default: uuidv4, },
-  title: { type: String, default: '', },
-  authorName: { type: String, default: '', },
-  summary: { type: String, default: '', },
-  image: { type: String, default: '', },
-  price: { type: Number, default: 0, },
-  createdBy: { type: User.schema },
+  firstName: { type: String, default: '' },
+  lastName: { type: String, default: '' },
+  // TODO: make the email unique without breaking other models...
+  email: { type: String, default: '' },
+  passwordHash: { type: String, default: '' },
 },{
-  timestamps: true
+  timestamps: true,
 });
 
-const Book = mongoose.model('Book', BookSchema);
+const User = mongoose.model('User', UserSchema);
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
-Book.prototype.toString = function() {
+User.prototype.toString = function() {
   return `${this.title} (${this.authorName})`;
 };
 
-Book.prototype.priceString = function() {
-  if (this.price > 0) {
-    return `$${this.price.toFixed(2)}`;
-  }
-
-  return 'FREE';
+User.prototype.minfo = function() {
+  return {
+    id: this.id,
+    firstName: this.firstName,
+  };
 };
 
-module.exports = Book;
+module.exports = User;

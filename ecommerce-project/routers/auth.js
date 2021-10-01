@@ -1,21 +1,20 @@
 const express = require('express');
-const BooksController = require('../controllers/books');
-const { enforceUser } = require('../middleware');
+const AuthController = require('../controllers/auth');
+const UsersController = require('../controllers/users');
+const { enforceUser, preventUser } = require('../middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
 // UI ROUTES                                                                 //
 ///////////////////////////////////////////////////////////////////////////////
-router.get('/', BooksController.index);
-router.get('/new', enforceUser, BooksController.new);
-router.get('/:bookId', BooksController.show);
-router.get('/:bookId/edit', enforceUser, BooksController.edit);
+router.get('/login', preventUser, AuthController.login);
+router.get('/signup', preventUser, AuthController.signup);
+router.get('/logout', enforceUser, AuthController.logout);
 
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
-router.post('/', enforceUser, BooksController.create);
-router.post('/:bookId', enforceUser, BooksController.update);
-router.delete('/:bookId', enforceUser, BooksController.destroy);
+router.post('/login', preventUser, AuthController.authenticate);
+router.post('/signup', preventUser, UsersController.create);
 
 module.exports = router;

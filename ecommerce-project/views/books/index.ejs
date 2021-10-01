@@ -12,13 +12,18 @@
       <div class="row pt-3x">
         <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
           <h1>Books for Sale</h1>
-          <!-- REQ: Include a link to another page called Add Product. This page should be loaded using GET as well... -->
-          <a href="/books/new" class="btn btn-primary btn-lg">Add New Product</a>
+          <% if (currentUser) { %>
+            <a href="/books/new" class="btn btn-primary btn-lg">Add New Product</a>
+          <% }%>
         </div>
         <ul class="list-group">
           <% if(books.length === 0){ %>
             <div class="alert alert-primary" role="alert">
-              <span>There are currently no books for sale. <a href="/books/new">Try adding a product</a>!</span>
+              <span>There are currently no books for sale.
+                <% if (currentUser) { %>
+                  <a href="/books/new">Try adding a product</a>!
+                <% }%>
+              </span>
             </div>
           <% } %>
           <% books.forEach(function(book){ %>
@@ -31,15 +36,21 @@
                     <span class="text-muted">By <%= book.authorName || "Unknown Author" %></span>
                   </div>
                   <div class="btn-group">
-                    <!-- <a href="/books/<%= book.id %>" class="btn btn-sm btn-primary disabled" disabled>View Book</a> -->
-                    <a href="/books/<%= book.id %>/edit" class="btn btn-sm btn-link">Edit Book</a>
-                    <button class="btn btn-sm btn-link delete-book">Delete Book</button>
+                    <% if (currentUser) { %>
+                      <!-- <a href="/books/<%= book.id %>" class="btn btn-sm btn-primary disabled" disabled>View Book</a> -->
+                      <a href="/books/<%= book.id %>/edit" class="btn btn-sm btn-link">Edit Book</a>
+                      <button class="btn btn-sm btn-link delete-book">Delete Book</button>
+                    <% } %>
                   </div>
                 </div>
                 <p><%= book.summary %></p>
                 <div class="d-flex justify-content-end">
                   <div class="btn-group">
-                    <button class="btn btn-lg btn-primary add-to-cart">Add to Cart (<%= book.priceString() %>)</button>
+                    <% if (currentUser) { %>
+                      <button class="btn btn-lg btn-primary add-to-cart">Add to Cart (<%= book.priceString() %>)</button>
+                    <% } else { %>
+                      <button class="btn btn-lg btn-secondary" disabled>Log in to add to cart</button>
+                    <% } %>
                   </div>
                 </div>
               </div>

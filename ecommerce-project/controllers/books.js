@@ -5,22 +5,34 @@ const { logAndSendError } = require('../utils/response');
 const BooksController = {
   index: (req, res, next) => {
     return Book.find()
-      .then(books => res.render('books/index', { books, cartItems: req.cartItems }))
+      .then(books => res.render('books/index', {
+        books,
+        currentUser: req.user,
+        cartItems: req.cartItems
+      }))
       .catch(logAndSendError(res));
   },
   new: (req, res, next) => {
     const book = new Book();
 
-    return res.render('books/form', { book, cartItems: req.cartItems });
+    return res.render('books/form', {
+      book,
+      currentUser: req.user,
+      cartItems: req.cartItems
+    });
   },
   show: (req, res, next) => {},
   edit: (req, res, next) => {
     return Book.findById(req.params.bookId)
-      .then(book => res.render('books/form', { book, cartItems: req.cartItems }))
+      .then(book => res.render('books/form', {
+        book,
+        currentUser: req.user,
+        cartItems: req.cartItems
+      }))
       .catch(logAndSendError(res));
   },
   create: (req, res, next) => {
-    return Book.create(req.body)
+    return Book.create({ ...req.body, createdBy: req.user })
       .then(book => res.redirect('/'))
       .catch(logAndSendError(res));
   },
