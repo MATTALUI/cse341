@@ -14,6 +14,6 @@ router.get('/', enforceUser, CartItemsController.index);
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
 router.post('/', enforceUser, CartItemsController.create);
-// router.delete('/:itemId', CartItemsController.destroy);
+router.delete('/:itemId', CartItemsController.destroy);
 
 module.exports = router;

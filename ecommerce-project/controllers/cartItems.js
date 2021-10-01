@@ -24,6 +24,11 @@ const CartItemsController = {
       )
       .catch(logAndSendError(res));
   },
+  destroy: (req, res, next) => {
+    return CartItem.deleteMany({ 'item._id': req.params.itemId, 'user._id': req.user.id })
+      .then(deleted => res.send(deleted))
+      .catch(logAndSendError(res));
+  },
 };
 
 module.exports = CartItemsController;
