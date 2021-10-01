@@ -24,7 +24,7 @@ module.exports = {
       return next();
     }
 
-    CartItem.find({ 'user.id': req.user.id }).then(items => {
+    CartItem.find({ 'user._id': req.user.id }).then(items => {
       req.cartItems = items;
       next();
     });
