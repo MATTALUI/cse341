@@ -25,6 +25,12 @@ const OrdersController = {
       })
       .catch(logAndSendError(res));
   },
+  cancel: (req, res, next) => {
+    return Order.findById(req.params.orderId)
+      .update({status: Order.StatusCodes.CANCELLED })
+      .then(book => res.redirect('/orders'))
+      .catch(logAndSendError(res));
+  },
 };
 
 module.exports = OrdersController;

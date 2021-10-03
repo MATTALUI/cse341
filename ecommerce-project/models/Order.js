@@ -44,4 +44,13 @@ Order.prototype.statusDescription = function() {
   }[this.status] || 'Status Unknown';
 };
 
+Order.prototype.statusContextColor = function() {
+  return {
+    [StatusCodes.PENDING]: 'primary',
+    [StatusCodes.CANCELLED]: 'danger',
+    [StatusCodes.DELIVERY]: 'primary',
+    [StatusCodes.FULFILLED]: 'primary',
+  }[this.status] || 'primary';
+};
+
 module.exports = Order;

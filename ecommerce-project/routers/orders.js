@@ -14,6 +14,7 @@ router.get('/', enforceUser, OrdersController.index);
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
 router.post('/', enforceUser, OrdersController.create);
+router.get('/:orderId/cancel', OrdersController.cancel);
 // router.put('/:orderId', OrdersController.update);
 // router.delete('/:orderId', OrdersController.destroy);
 
