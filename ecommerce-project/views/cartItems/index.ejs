@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <% include ../common/header.ejs %>
-    <title>Prove02 | Books</title>
+    <title>Bookshop | Books</title>
     <script src="/cart.js" charset="utf-8" defer></script>
     <style media="screen">
       .cart-total{
@@ -14,10 +14,10 @@
       }
     </style>
   </head>
-  <body>
+  <body  class="pt-5">
     <% include ../common/nav.ejs %>
     <% include ../common/toaster.ejs %>
-    <div class="container">
+    <div class="container mb-3">
       <div class="row pt-3x">
         <div class="d-flex justify-content-between align-items-center pt-3 pb-3">
           <h1>My Cart</h1>
@@ -62,6 +62,43 @@
                   </tbody>
                 </table>
               <%};%>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h2>Place Order</h2>
+              <form action="/orders" method="post">
+                <div class="mb-3">
+                  <label for="cardNumber">
+                    <span>
+                      <i class="fa fa-credit-card"></i>
+                      Card Number
+                    </span>
+                  </label>
+                  <input required type="text" id="cardNumber" name="cardNumber" class="form-control" value="XXXX-XXXX-XXXX-1234" readonly>
+                </div>
+                <div class="mb-3">
+                  <label for="address">
+                    <span>
+                      <i class="fa fa-map-marker col-sm-1"></i>
+                      Address
+                    </span>
+                  </label>
+                  <input required type="text" id="address" name="address" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="notes">
+                    <span>
+                      <i class="fa fa-sticky-note"></i>
+                      Notes
+                    </span>
+                  </label>
+                  <input type="text" id="notes" name="notes" class="form-control">
+                </div>
+                <button class="btn btn-lg btn-success w-100">Place Order</button>
+              </form>
             </div>
           </div>
         </div>

@@ -1,3 +1,5 @@
+const Book = require('../models/Book');
+
 module.exports = {
   agregateCartBooks: books => {
     const bookHash = {};
@@ -7,7 +9,7 @@ module.exports = {
         bookHash[book.id].quantity++;
       } else {
         bookHash[book.id] = {
-          book,
+          book: new Book(book),
           quantity: 1,
         };
       }

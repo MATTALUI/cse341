@@ -22,7 +22,7 @@ const User = mongoose.model('User', UserSchema);
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
 User.prototype.toString = function() {
-  return `${this.title} (${this.authorName})`;
+  return `${this.firstName} ${this.lastName}`;
 };
 
 User.prototype.minfo = function() {

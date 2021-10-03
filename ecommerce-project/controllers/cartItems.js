@@ -16,12 +16,28 @@ const CartItemsController = {
       grandTotal,
     });
   },
+  show: (req, res, next) => {
+    // NOTE: This endpoint doesn't actually make sense from a practical standpoint,
+    // given our implementation of the cart. However, it's wanted by the assignment
+    // so here it is!
+    return CartItem.findById(req.params.cartItemId)
+      .then(cartItem => res.send(cartItem))
+      .catch(logAndSendError(res));
+  },
   create: (req, res, next) => {
     Book.findById(req.body.itemId)
       .then(book => CartItem.create({ item: book, user: req.user })
         .then(ci => res.send(ci))
         .catch(logAndSendError(res))
       )
+      .catch(logAndSendError(res));
+  },
+  update: (req, res, next) => {
+    // NOTE: This endpoint doesn't actually make sense from a practical standpoint,
+    // given our implementation of the cart. However, it's wanted by the assignment
+    // so here it is!
+    return CartItem.findById(req.params.cartItemId).update(req.body)
+      .then(update => res.send(update))
       .catch(logAndSendError(res));
   },
   destroy: (req, res, next) => {

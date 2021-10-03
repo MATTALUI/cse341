@@ -1,20 +1,20 @@
 const express = require('express');
-const CartItemsController = require('../controllers/cartItems');
+const OrdersController = require('../controllers/orders');
 const { enforceUser } = require('../middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
 // UI ROUTES                                                                 //
 ///////////////////////////////////////////////////////////////////////////////
-router.get('/', enforceUser, CartItemsController.index);
-// router.get('/new', CartItemsController.new);
-router.get('/:cartItemId', CartItemsController.show);
+router.get('/', enforceUser, OrdersController.index);
+// router.get('/new', OrdersController.new);
+// router.get('/:orderId', OrdersController.show);
 
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
-router.post('/', enforceUser, CartItemsController.create);
-router.put('/:cartItemId', CartItemsController.update);
-router.delete('/:itemId', CartItemsController.destroy);
+router.post('/', enforceUser, OrdersController.create);
+// router.put('/:orderId', OrdersController.update);
+// router.delete('/:orderId', OrdersController.destroy);
 
 module.exports = router;

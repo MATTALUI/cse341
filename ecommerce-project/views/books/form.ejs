@@ -2,13 +2,13 @@
 <html lang="en" dir="ltr">
   <head>
     <% include ../common/header.ejs %>
-    <title>Prove02 | Book Form</title>
+    <title>Bookshop | Book Form</title>
   </head>
-  <body>
+  <body class="pt-5">
     <% include ../common/nav.ejs %>
     <% include ../common/toaster.ejs %>
     <div class="container">
-      <div class="row pt-3x">
+      <div class="row pt-3">
         <h1><%= book.title || "New Book"%></h1>
         <!--  REQ: Include a form on this add product page that will submit a POST request when submitted. This form should include at least the title of the new book. -->
         <form class="row" action="/books/<%= book.title ? book.id : '' %>" method="post">
