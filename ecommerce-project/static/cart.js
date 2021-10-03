@@ -23,20 +23,27 @@
         delay: 6000,
         color: 'success',
       });
+      validateOrderForm();
 
       let cartCount = +$('#cart-count').html().match(/\d{1,}/)[0];
-      console.log(cartCount);
-      console.log(cartCount === 0);
+
       if (cartCount === 0) {
         $('table').remove();
-        $('.card-body').append(`
+        $('#cart-card').append(`
           <div class="alert alert-primary mt-3" role="alert">
             <span>You have no books in your cart!</span>
           </div>
         `);
       }
-    }).catch(console.log);
+    }).catch(console.error);
+  };
+
+  const validateOrderForm = event => {
+    const cartCount = $('.cart-item').length;
+    $('#order-submit').attr('disabled', !cartCount);
   };
 
   $('.remove-item').on('click', removeFromCart);
+  $('form').on('change', validateOrderForm)
+  $(document).ready(validateOrderForm);
 })();
