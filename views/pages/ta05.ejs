@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../includes/header.ejs %>
+</head>
+
+<body>
+  <% include ../includes/nav.ejs %>
+  <div class="jumbotron text-center" style="background-color: <%= color %>;">
+    <div class="container">
+      <h1><%= title %></h1>
+      <p>This is the placeholder for Team Activity 05</p>
+    </div>
+  </div>
+  <div class="container">
+    <form class="" action="/ta05/setColor" method="post">
+      <div class="form-group row">
+        <label for="color" class="col-sm-2 col-form-label">Color</label>
+        <div class="col-sm-8">
+          <input type="color" class="form-control" name="color" id="color" placeholder="Email" value="<%= color %>">
+        </div>
+        <button class="btn btn-primary col-sm-2">Change Color</button>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <a class="col-sm-2 btn btn-primary" href="/ta05/decrement">Decrement</a>
+    <div class="col-sm-8">
+      <p style="text-align: center; font-size: 3rem; font-weight: bold;"><%= count %></p>
+    </div>
+    <a class="col-sm-2 btn btn-primary" href="/ta05/increment">Increment</a>
+  </div>
+  <div class="row">
+    <a class="col-sm-12 btn btn-primary" href="/ta05/reset">Reset</a>
+  </div>
+</body>
+
+</html>

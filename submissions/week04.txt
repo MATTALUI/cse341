@@ -1,0 +1,31 @@
+After completing the assignment, be sure to push to Github and Heroku.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application (e.g., Heroku):
+https://mhummer-cse341-bookstore.herokuapp.com
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+https://github.com/MATTALUI/cse341
+
+3. Briefly list and describe the elements of the application that are functioning.
+- All elements are functioning
+- Create a MongoDB database for your project.
+- Successfully perform CRUD operations.
+- Your app should have products and the ability to add, delete and update products in the cart (Create, Read, Update, Delete).
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+- Nothing.
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+- Mongo! I've used Mongo before, but I always forget about when selecting a DB for new projects. I need to remember to use it more often when spinning up new personal projects.
+
+6. If you could change this assignment to be more effective or helpful, what would you change?
+- Nothing
+
+7. Please select the category you feel best describes your assignment:
+   5 - Shows creativity and excels above and beyond requirements
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+- Additional non-required collections created and used (orders and users)
+- Operations are user-specific (no hardcoded; basic authentication flow included)
+- posting orders from cart functional,
