@@ -24,12 +24,12 @@ const AuthController = {
   authenticate: (req, res, next) => {
     User.findOne({ email: req.body.email }).then(user => {
       if (!user) {
-        req.flash('danger', 'Incorrect email or password. (email)');
+        req.flash('danger', 'Incorrect email or password.');
         return res.redirect('/auth/login');
       }
       bcrypt.compare(req.body.password, user.passwordHash, function(err, result) {
         if (err || !result) {
-          req.flash('danger', 'Incorrect email or password. (password)');
+          req.flash('danger', 'Incorrect email or password.');
           return res.redirect('/auth/login');
         }
         jwt.sign(user.minfo(), JWT_SECRET, { algorithm: JWT_ALGO }, (err, token) => {

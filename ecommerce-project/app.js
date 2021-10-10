@@ -28,7 +28,6 @@ const sessionOptions = {
   secret: process.env.JWT_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: process.env.NODE_ENV === 'production' } // requires HTTPS
 };
 const corsOptions = {
   origin: "https://mhummer-cse341-bookstore.herokuapp.com/",
