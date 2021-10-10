@@ -17,19 +17,23 @@ const AuthController = {
     });
   },
   logout: (req, res, next) => {
+    req.flash('success', `Come back soon!`);
     res.clearCookie('user');
     res.redirect('/');
   },
   authenticate: (req, res, next) => {
     User.findOne({ email: req.body.email }).then(user => {
       if (!user) {
+        req.flash('danger', 'Incorrect email or password. (email)');
         return res.redirect('/auth/login');
       }
       bcrypt.compare(req.body.password, user.passwordHash, function(err, result) {
         if (err || !result) {
+          req.flash('danger', 'Incorrect email or password. (password)');
           return res.redirect('/auth/login');
         }
         jwt.sign(user.minfo(), JWT_SECRET, { algorithm: JWT_ALGO }, (err, token) => {
+          req.flash('success', `Welcome back, ${user.toString()}`);
           res.cookie('user', token);
           res.redirect('/');
         });

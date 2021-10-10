@@ -4,6 +4,9 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const flash = require('req-flash');
+
 const booksRouter = require('./routers/books');
 const ordersRouter = require('./routers/orders');
 const cartItemsRouter = require('./routers/cartItems');
@@ -21,6 +24,12 @@ const DB_CONFIG = {
     // useFindAndModify: false,
     // family: 4
 };
+const sessionOptions = {
+  secret: process.env.JWT_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: process.env.NODE_ENV === 'production' } // requires HTTPS
+};
 const corsOptions = {
   origin: "https://mhummer-cse341-bookstore.herokuapp.com/",
   optionsSuccessStatus: 200
@@ -34,6 +43,8 @@ app
   .use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
   .use(bodyParser.json()) // parse application/json
   .use(cookieParser())
+  .use(session(sessionOptions))
+  .use(flash({ locals: 'flashes' }))
   .use(CustomMiddleware.setUser)
   .use(CustomMiddleware.regsiterUsersCartItems)
   .use('/books', booksRouter)
