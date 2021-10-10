@@ -9,18 +9,30 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const UsersController = {
   create: (req, res, next) => {
-    // TODO: Beef up the validations here
-    // TODO: make use of the confirm password
-    bcrypt.hash(req.body.password, SALT_ROUNDS).then(hash => {
-      delete req.body.password;
-      req.body.passwordHash = hash;
-      User.create(req.body).then(user => {
-        jwt.sign(user.minfo(), JWT_SECRET, { algorithm: JWT_ALGO }, (err, token) => {
-          res.cookie('user', token);
-          res.redirect('/');
-        });
+    if (req.body.password !== req.body.confirmPassword) {
+      req.flash('danger', 'Password and password confirmation must match.');
+
+      return res.redirect('/auth/signup');
+    }
+
+    User.findOne({ email: req.body.email }).then(user => {
+      if (user) {
+        req.flash('danger', 'An account with that email address already exists.');
+
+        return res.redirect('/auth/signup');
+      }
+      bcrypt.hash(req.body.password, SALT_ROUNDS).then(hash => {
+        delete req.body.password;
+        req.body.passwordHash = hash;
+        User.create(req.body).then(user => {
+          jwt.sign(user.minfo(), JWT_SECRET, { algorithm: JWT_ALGO }, (err, token) => {
+            res.cookie('user', token);
+            res.redirect('/');
+          });
+        }).catch(logAndSendError(res));
       }).catch(logAndSendError(res));
-    }).catch(logAndSendError(res));
+    });
+
   },
 };
 

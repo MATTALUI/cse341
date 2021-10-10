@@ -1,0 +1,33 @@
+After completing the assignment, be sure to push to Github and Heroku.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application (e.g., Heroku):
+- https://mhummer-cse341-bookstore.herokuapp.com/
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+- https://github.com/MATTALUI/cse341/tree/master/ecommerce-project
+
+3. Briefly list and describe the elements of the application that are functioning.
+- All aspects are functioning
+- Has an authentication project
+- Authentication token is stored
+- Views are dynamic for users
+- DB contains user info for logins
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+- None. It all works
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+- I liked learning about the CSRF flow in the express ecosystem.
+
+6. If you could change this assignment to be more effective or helpful, what would you change?
+- Nothing.
+
+7. Please select the category you feel best describes your assignment:
+- 5 - Shows creativity and excels above and beyond requirements
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+- Authentication works well, messages are displayed when it fails
+- Dynamic views and route protection
+- CSRF protection
+- Extra user information stored in database (names, etc)
