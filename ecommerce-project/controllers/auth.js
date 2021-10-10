@@ -9,11 +9,13 @@ const AuthController = {
   login: (req, res, next) => {
     res.render('auth/login', {
       currentUser: req.user,
+      csrfToken: req.csrfToken(),
     });
   },
   signup: (req, res, next) => {
     res.render('auth/signup', {
       currentUser: req.user,
+      csrfToken: req.csrfToken(),
     });
   },
   logout: (req, res, next) => {

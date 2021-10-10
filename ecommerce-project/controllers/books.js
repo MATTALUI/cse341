@@ -8,7 +8,8 @@ const BooksController = {
       .then(books => res.render('books/index', {
         books,
         currentUser: req.user,
-        cartItems: req.cartItems
+        cartItems: req.cartItems,
+        csrfToken: req.csrfToken(),
       }))
       .catch(logAndSendError(res));
   },
@@ -18,7 +19,8 @@ const BooksController = {
     return res.render('books/form', {
       book,
       currentUser: req.user,
-      cartItems: req.cartItems
+      cartItems: req.cartItems,
+      csrfToken: req.csrfToken(),
     });
   },
   show: (req, res, next) => {},
@@ -27,7 +29,8 @@ const BooksController = {
       .then(book => res.render('books/form', {
         book,
         currentUser: req.user,
-        cartItems: req.cartItems
+        cartItems: req.cartItems,
+        csrfToken: req.csrfToken(),
       }))
       .catch(logAndSendError(res));
   },
@@ -43,7 +46,7 @@ const BooksController = {
   },
   destroy: (req, res, next) => {
     return Book.findOneAndDelete(req.params.bookId)
-      .then(book => CartItem.deleteMany({ 'item.id': book.id })
+      .then(book => CartItem.deleteMany({ 'item._id': book.id })
         .then(removed => res.send({ book, removed }))
         .catch(logAndSendError(res))
       )

@@ -14,6 +14,7 @@ const CartItemsController = {
       currentUser: req.user,
       cartBooksAgregate,
       grandTotal,
+      csrfToken: req.csrfToken(),
     });
   },
   show: (req, res, next) => {

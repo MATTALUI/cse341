@@ -71,6 +71,7 @@
             <div class="card-body">
               <h2>Place Order</h2>
               <form action="/orders" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
                 <div class="mb-3">
                   <label for="cardNumber">
                     <span>

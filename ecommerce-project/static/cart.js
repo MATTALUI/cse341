@@ -16,7 +16,7 @@
       return;
     }
     // new Promise((res, rej) => res())
-    $.ajax(`/cart-items/${itemId}`, { method: 'DELETE' }).then(() => {
+    $.ajax(`/cart-items/${itemId}`, { method: 'DELETE', headers: { 'CSRF-Token': getCSRFToken() } }).then(() => {
       $(event.target).closest('.cart-item').remove();
       deltaCartItems(-count);
       makeToast(`<em class="fw-bold">${headline}</em> was successfully removed from your cart.`, {

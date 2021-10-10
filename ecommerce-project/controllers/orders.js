@@ -10,6 +10,7 @@ const OrdersController = {
         cartItems: req.cartItems,
         currentUser: req.user,
         orders,
+        csrfToken: req.csrfToken(),
       }))
       .catch(logAndSendError(res));
   },

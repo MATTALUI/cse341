@@ -6,6 +6,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('req-flash');
+const csrf = require('csurf');
 
 const booksRouter = require('./routers/books');
 const ordersRouter = require('./routers/orders');
@@ -13,6 +14,7 @@ const cartItemsRouter = require('./routers/cartItems');
 const authRouter = require('./routers/auth');
 const CustomMiddleware = require('./middleware');
 const registerLocals = require('./utils/views');
+const csrfProtection = csrf({ cookie: true });
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -46,6 +48,7 @@ app
   .use(flash({ locals: 'flashes' }))
   .use(CustomMiddleware.setUser)
   .use(CustomMiddleware.regsiterUsersCartItems)
+  .use(csrfProtection)
   .use('/books', booksRouter)
   .use('/cart-items', cartItemsRouter)
   .use('/auth', authRouter)

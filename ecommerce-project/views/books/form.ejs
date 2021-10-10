@@ -13,6 +13,7 @@
         <h1><%= book.title || "New Book"%></h1>
         <!--  REQ: Include a form on this add product page that will submit a POST request when submitted. This form should include at least the title of the new book. -->
         <form class="row" action="/books/<%= book.title ? book.id : '' %>" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken  %>">
           <div class="mb-3 col-sm-12">
             <label for="title" class="form-label">Book Title</label>
             <input type="text" class="form-control" id="title" name="title" value="<%= book.title || ""%>" required>

@@ -13,7 +13,7 @@
     }
 
     const bookId = $(event.target).closest('.book-item').data('id');
-    $.ajax(`/books/${bookId}`, { method: 'DELETE' })
+    $.ajax(`/books/${bookId}`, { method: 'DELETE', headers: { 'CSRF-Token': getCSRFToken() } })
       .then(responseData => {
         const headline = $(event.target).closest('.book-item').data('headline');
 
@@ -37,7 +37,7 @@
   const addToCart = event => {
     const itemId = $(event.target).closest('.book-item').data('id');
 
-    $.ajax('/cart-items', { method: 'POST', data: { itemId } })
+    $.ajax('/cart-items', { method: 'POST', data: { itemId }, headers: { 'CSRF-Token': getCSRFToken() } })
       .then(cartItem => {
         const headline = $(event.target).closest('.book-item').data('headline');
         deltaCartItems(1);
