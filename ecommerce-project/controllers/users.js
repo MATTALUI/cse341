@@ -31,8 +31,9 @@ const UsersController = {
           jwt.sign(user.minfo(), JWT_SECRET, { algorithm: JWT_ALGO }, (err, token) => {
             mailWithDefaults(user.email, (err, info) => {
               if (err) {
-                // NOTE: 99% of the time here it's an auth error here. SInce we're just using google SMTP
-                // there's a bunch of shifting parts for security. It's honestly not worth sorting too in-depth
+                // NOTE: 99% of the time here it's an auth error here. Since we're just using google SMTP
+                // there's a bunch of shifting parts for security. It's honestly not worth sorting too in-depth.
+                console.error(err);
                 req.flash('danger', 'Your account has been created successfully, but there was an issue confirming your email.');
               } else {
                 req.flash('success', 'Your account has been created successfully. A confirmation email has been sent to your email address.');
