@@ -29,7 +29,7 @@
           <% } %>
           <% books.forEach(function(book){ %>
             <li class="list-group-item bg-light d-flex book-item" data-id="<%= book.id %>" data-headline="<%= book.toString() %>">
-              <img src="https://picsum.photos/200/200" alt="cover of the book" class="img-thumbnail me-3 book-cover">
+              <img src="<%=book.image || 'https://picsum.photos/200/200'%>" alt="cover of the book" class="img-thumbnail me-3 book-cover">
               <div class="flex-grow-1">
                 <div class="d-flex justify-content-between align-items-start mb-3">
                   <div>
