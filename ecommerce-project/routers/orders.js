@@ -1,6 +1,6 @@
 const express = require('express');
 const OrdersController = require('../controllers/orders');
-const { enforceUser } = require('../middleware');
+const { enforceUser, validateOrderPayload, checkOrderBelongsToUser } = require('../middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -13,8 +13,8 @@ router.get('/', enforceUser, OrdersController.index);
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
-router.post('/', enforceUser, OrdersController.create);
-router.get('/:orderId/cancel', OrdersController.cancel);
+router.post('/', enforceUser, validateOrderPayload, OrdersController.create);
+router.get('/:orderId/cancel', enforceUser, checkOrderBelongsToUser, OrdersController.cancel);
 // router.put('/:orderId', OrdersController.update);
 // router.delete('/:orderId', OrdersController.destroy);
 

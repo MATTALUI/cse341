@@ -29,7 +29,11 @@ const OrdersController = {
   cancel: (req, res, next) => {
     return Order.findById(req.params.orderId)
       .update({status: Order.StatusCodes.CANCELLED })
-      .then(book => res.redirect('/orders'))
+      .then(order => {
+        req.flash('success', `Your order (#${req.params.orderId}) has been cancelled.`);
+
+        return res.redirect('/orders');
+      })
       .catch(logAndSendError(res));
   },
 };

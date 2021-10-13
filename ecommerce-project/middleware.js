@@ -5,6 +5,7 @@ const { compose } = require("compose-middleware");
 const CartItem = require('./models/CartItem');
 const User = require('./models/User');
 const Book = require('./models/Book');
+const Order = require('./models/Order');
 
 module.exports = {
   setUser: (req, res, next) => {
@@ -73,6 +74,33 @@ module.exports = {
         req.flash('danger', `Unable to ${actionWord} the book. Please ensure all fields are filled out and try again.`);
 
         return res.redirect(newUrl);
+      }
+
+      next();
+    },
+  ]),
+
+  checkOrderBelongsToUser: (req, res, next) => {
+    Order.findById(req.params.orderId || req.params.id).then(order => {
+      if (!order || !req.user || order.user._id !== req.user.id) {
+        return res.redirect('/orders');
+      }
+
+      next();
+    });
+  },
+
+  validateOrderPayload: compose([
+    body('cardNumber').notEmpty().trim(), // This is actually hard coded in the form cause I don't want your card number...
+    body('address').trim().notEmpty(),
+    body('notes').trim(),
+    (req, res, next) => {
+      const { errors } = validationResult(req);
+      if (errors.length) {
+
+        req.flash('danger', `Unable to place your order. Please ensure all fields are filled out and try again.`);
+
+        return res.redirect('/cart-items');
       }
 
       next();
