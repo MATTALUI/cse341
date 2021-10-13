@@ -54,7 +54,10 @@ app
   .use('/auth', authRouter)
   .use('/orders', ordersRouter)
   .get('/', (req,res,next) => res.redirect('/books')) // At least for now, we only sell books...
-  .get('*',  (req,res,next) => res.sendStatus(404)); // Not found. :(
+  .get('*',  (req,res,next) => res.render('common/404', {
+    csrfToken: req.csrfToken(),
+    currentUser: req.user,
+  })); // Not found. :(
 registerLocals(app);
 
 mongoose.connect(MONGO_URL, DB_CONFIG)
