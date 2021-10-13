@@ -57,7 +57,11 @@ app
   .get('*',  (req,res,next) => res.render('common/404', {
     csrfToken: req.csrfToken(),
     currentUser: req.user,
-  })); // Not found. :(
+  }))
+  .use((err, req, res, next) => res.render('common/500', {
+    csrfToken: req.csrfToken(),
+    currentUser: req.user,
+  })); // Something bad has happened!
 registerLocals(app);
 
 mongoose.connect(MONGO_URL, DB_CONFIG)
