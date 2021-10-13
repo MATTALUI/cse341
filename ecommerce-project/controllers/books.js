@@ -26,17 +26,12 @@ const BooksController = {
   show: (req, res, next) => {},
   edit: (req, res, next) => {
     return Book.findById(req.params.bookId)
-      .then(book => {
-        if (book.createdBy._id !== req.user.id) {
-          return res.redirect('/');
-        }
-        return res.render('books/form', {
-          book,
-          currentUser: req.user,
-          cartItems: req.cartItems,
-          csrfToken: req.csrfToken(),
-        })
-      })
+      .then(book => res.render('books/form', {
+        book,
+        currentUser: req.user,
+        cartItems: req.cartItems,
+        csrfToken: req.csrfToken(),
+      }))
       .catch(logAndSendError(res));
   },
   create: (req, res, next) => {
@@ -50,19 +45,12 @@ const BooksController = {
       .catch(logAndSendError(res));
   },
   destroy: (req, res, next) => {
-    return Book.findById(req.params.bookId).then(book => {
-      if (book.createdBy._id !== req.user.id) {
-        return res.sendStatus(403); // Forbidden
-      }
-      return Book.findOneAndDelete(req.params.bookId)
-        .then(book => CartItem.deleteMany({ 'item._id': book.id })
-          .then(removed => res.send({ book, removed }))
-          .catch(logAndSendError(res)))
-        .catch(logAndSendError(res));
-    });
+    return Book.findOneAndDelete(req.params.bookId)
+      .then(book => CartItem.deleteMany({ 'item._id': book.id })
+        .then(removed => res.send({ book, removed }))
+        .catch(logAndSendError(res)))
+      .catch(logAndSendError(res));
   },
 };
 
 module.exports = BooksController;
-
-// ddfcf252-a921-459c-b9c2-30287d59df19

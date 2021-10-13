@@ -24,7 +24,7 @@ const Book = mongoose.model('Book', BookSchema);
 // Instance Methods                                                          //
 ///////////////////////////////////////////////////////////////////////////////
 Book.prototype.toString = function() {
-  return `${this.title} (${this.authorName})`;
+  return `${this.title} (${this.authorName || 'Unknown Author'})`;
 };
 
 Book.prototype.priceString = function() {

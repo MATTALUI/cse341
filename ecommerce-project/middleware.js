@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
+const { body, validationResult } = require('express-validator');
+const { compose } = require("compose-middleware");
+
 const CartItem = require('./models/CartItem');
 const User = require('./models/User');
+const Book = require('./models/Book');
 
 module.exports = {
   setUser: (req, res, next) => {
@@ -45,4 +49,33 @@ module.exports = {
 
     next();
   },
+
+  checkBookBelongsToUser: (req, res, next) => {
+    Book.findById(req.params.bookId || req.params.id).then(book => {
+      if (!book || !req.user || book.createdBy._id !== req.user.id) {
+        return res.redirect('/');
+      }
+      next();
+    });
+  },
+
+  validateBookPayload: compose([
+    body('title').notEmpty().trim(),
+    body('price').notEmpty().isFloat({ min: 0 }),
+    body('authorName').trim(), // Even though this is "required", it has UI defaults; we only need to sanitize
+    body('summary').trim(), // Optional; only need to sanitize
+    (req, res, next) => {
+      const { errors } = validationResult(req);
+      if (errors.length) {
+        const newUrl = req.params.bookId ? `/books/${req.params.bookId}/edit` : '/books/new';
+        const actionWord = req.params.bookId ? 'update' : 'create';
+
+        req.flash('danger', `Unable to ${actionWord} the book. Please ensure all fields are filled out and try again.`);
+
+        return res.redirect(newUrl);
+      }
+
+      next();
+    },
+  ]),
 };

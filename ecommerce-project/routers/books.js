@@ -1,7 +1,7 @@
 const express = require('express');
 
 const BooksController = require('../controllers/books');
-const { enforceUser } = require('../middleware');
+const { enforceUser, checkBookBelongsToUser, validateBookPayload } = require('../middleware');
 const router = express.Router();
 
 
@@ -11,13 +11,13 @@ const router = express.Router();
 router.get('/', BooksController.index);
 router.get('/new', enforceUser, BooksController.new);
 // router.get('/:bookId', BooksController.show);
-router.get('/:bookId/edit', enforceUser, BooksController.edit);
+router.get('/:bookId/edit', enforceUser, checkBookBelongsToUser, BooksController.edit);
 
 ///////////////////////////////////////////////////////////////////////////////
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
-router.post('/', enforceUser, BooksController.create);
-router.post('/:bookId', enforceUser, BooksController.update);
-router.delete('/:bookId', enforceUser, BooksController.destroy);
+router.post('/', enforceUser, validateBookPayload, BooksController.create);
+router.post('/:bookId', enforceUser, checkBookBelongsToUser, validateBookPayload, BooksController.update);
+router.delete('/:bookId', enforceUser, checkBookBelongsToUser, BooksController.destroy);
 
 module.exports = router;
