@@ -106,4 +106,27 @@ module.exports = {
       next();
     },
   ]),
+
+  validateSignupPayload: compose([
+    body('email').notEmpty().trim().isEmail(),
+    body('password').notEmpty().isLength({ min: 8 }),
+    body('confirmPassword').notEmpty().isLength({ min: 8 }).custom((confirmPassword, { req }) => {
+      if(confirmPassword !== req.body.password){
+        throw new Error('Passwords do not match.');
+      }
+    }),
+    body('firstName').notEmpty().trim(),
+    body('lastName').notEmpty().trim(),
+    (req, res, next) => {
+      const { errors } = validationResult(req);
+      if (errors.length) {
+
+        req.flash('danger', `Unable to sign up. Please ensure all fields are filled out and try again.`);
+
+        return res.redirect('/auth/signup');
+      }
+
+      next();
+    },
+  ]),
 };

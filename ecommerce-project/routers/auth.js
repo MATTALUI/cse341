@@ -1,7 +1,7 @@
 const express = require('express');
 const AuthController = require('../controllers/auth');
 const UsersController = require('../controllers/users');
-const { enforceUser, preventUser } = require('../middleware');
+const { enforceUser, preventUser,validateSignupPayload } = require('../middleware');
 const router = express.Router();
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -15,6 +15,6 @@ router.get('/logout', enforceUser, AuthController.logout);
 // API ROUTES                                                                //
 ///////////////////////////////////////////////////////////////////////////////
 router.post('/login', preventUser, AuthController.authenticate);
-router.post('/signup', preventUser, UsersController.create);
+router.post('/signup', preventUser, validateSignupPayload, UsersController.create);
 
 module.exports = router;
