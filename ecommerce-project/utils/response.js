@@ -1,3 +1,10 @@
 module.exports = {
-  logAndSendError: res => err => console.error(err) || res.sendStatus(500),
+  logAndSendError: res => err => {
+    // NOTE: Now that we have a nifty 500 page we just need to log the error
+    console.error(err);
+    return res.render('common/500', {
+      csrfToken: '',
+      currentUser: null,
+    });
+  },
 };
