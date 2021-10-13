@@ -1,8 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+
 const User = require('../models/User');
 const { logAndSendError } = require('../utils/response');
+const { mailWithDefaults } = require('../utils/mailer');
+
 const SALT_ROUNDS = 10;
 const JWT_ALGO = 'HS256';
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -26,8 +29,21 @@ const UsersController = {
         req.body.passwordHash = hash;
         User.create(req.body).then(user => {
           jwt.sign(user.minfo(), JWT_SECRET, { algorithm: JWT_ALGO }, (err, token) => {
-            res.cookie('user', token);
-            res.redirect('/');
+            mailWithDefaults(user.email, (err, info) => {
+              if (err) {
+                // NOTE: 99% of the time here it's an auth error here. SInce we're just using google SMTP
+                // there's a bunch of shifting parts for security. It's honestly not worth sorting too in-depth
+                req.flash('danger', 'Your account has been created successfully, but there was an issue confirming your email.');
+              } else {
+                req.flash('success', 'Your account has been created successfully. A confirmation email has been sent to your email address.');
+              }
+              res.cookie('user', token);
+              res.redirect('/');
+            }, {
+              subject: 'Welcome to mhummer-cse341-bookstore.herokuapp.com!',
+              text: 'An account for your email has been created at https://mhummer-cse341-bookstore.herokuapp.com',
+              html: '<p>An account for your email has been created at https://mhummer-cse341-bookstore.herokuapp.com. <a href="https://mhummer-cse341-bookstore.herokuapp.com/auth/login">Login to buy books today!</a></p>',
+            });
           });
         }).catch(logAndSendError(res));
       }).catch(logAndSendError(res));

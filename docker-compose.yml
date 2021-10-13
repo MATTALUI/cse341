@@ -8,6 +8,8 @@ services:
     environment:
       - "MONGO_URL=mongodb://user:password@mongo:27017/ecommerce-bookstore?authSource=ecommerce-project&w=1"
       - "JWT_SECRET=major_buttkicking_is_back_in_town"
+      - "MAILER_EMAIL=mhummercse341bookstore@gmail.com"
+      - "MAILER_PASSWORD=password"
     ports:
       - "3000:3000"
     depends_on:
