@@ -3,6 +3,7 @@
   <head>
     <% include ../common/header.ejs %>
     <title>Bookshop | Book Form</title>
+    <script src="/bookForm.js" charset="utf-8" defer></script>
   </head>
   <body class="pt-5">
     <% include ../common/nav.ejs %>
@@ -33,7 +34,7 @@
             <label for="summary" class="form-label">Summary</label>
             <textarea id="summary" name="summary" class="form-control"><%= book.summary || ""%></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Save</button>
+          <input type="submit" class="btn btn-primary" value="Save">
         </form>
       </div>
     </div>
