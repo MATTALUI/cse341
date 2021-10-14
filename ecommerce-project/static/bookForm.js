@@ -1,5 +1,4 @@
 (() => {
-  console.log('you got it');
   let readyToValidate = false;
 
   const validate = () => {
