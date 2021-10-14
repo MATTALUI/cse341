@@ -44,7 +44,7 @@
   };
 
   $('.remove-item').on('click', removeFromCart);
-  $('form').on('change', validateOrderForm)
+  $('form').on('change', validateOrderForm);
   $(document).ready(validateOrderForm);
 })();
 

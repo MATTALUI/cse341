@@ -15,6 +15,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const PORT = process.env.PORT || 5000; // So we can run on heroku || (OR) localhost:5000
 
 const app = express();
@@ -37,6 +38,12 @@ app
   //.set('view engine', 'hbs')
   .use(bodyParser({ extended: false })) // For parsing the body of a POST
   .use(cookieParser())
+  .use(session({
+    secret: 'keyboard cat',
+    // resave: false,
+    // saveUninitialized: true,
+    // cookie: { secure: true }
+  }))
   .use('/ta01', ta01Routes)
   .use('/ta02', ta02Routes)
   .use('/ta03', ta03Routes)
