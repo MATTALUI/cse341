@@ -1,0 +1,35 @@
+After completing the assignment, be sure to push to Github and Heroku.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application (e.g., Heroku):
+https://mhummer-cse341-bookstore.herokuapp.com
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+https://github.com/MATTALUI/cse341/tree/master/ecommerce-project
+
+3. Briefly list and describe the elements of the application that are functioning.
+- All elements are functioning
+- Validation is created for forms
+- Project is complete
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+- None. Everything is working.
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+- Spending some time writing some custom validations lead to some fun things learned about the order of evens fired in a form.
+
+6. If you could change this assignment to be more effective or helpful, what would you change?
+- Nothing.
+
+7. Please select the category you feel best describes your assignment:
+- 5 - Shows creativity and excels above and beyond requirements
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+- Unique and functioning 404/500 pages
+- Unique validations implemented (custom javascript, html5, serverside)
+- Sign up emails sent out (when gmail stops changing the SMTP auth requirements. >:( )
+- Site has personal styling and is organized well
+- Application accomplishes an obvious task and provides a good user experience
+- Dynamic routing and middleware used well
+- Code organization follows MVC pattern and is easy to understand
+- Users can use CRUD operations for more than main requirements (Book, CartItem, Order, User)
