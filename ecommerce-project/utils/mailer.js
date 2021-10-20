@@ -1,4 +1,7 @@
 const nodemailer = require('nodemailer');
+const sgMailer = require('@sendgrid/mail');
+
+sgMailer.setApiKey(process.env.MAILER_API_KEY);
 
 const transportOptions = {
   port: 465,
@@ -10,7 +13,9 @@ const transportOptions = {
   secure: true,
 };
 
-const mailer = nodemailer.createTransport(transportOptions);
+// NOTE: 99% of the time here it's an auth error here. Since we're just using google SMTP
+// there's a bunch of shifting parts for security. It's honestly not worth sorting too in-depth.
+const gmailer = nodemailer.createTransport(transportOptions);
 
 const mailWithDefaults = (to, callback, options={}) => {
   const mailData = {
@@ -30,10 +35,14 @@ const mailWithDefaults = (to, callback, options={}) => {
    }
 };
 
-  mailer.sendMail(mailData, handler);
+  // gmailer.sendMail(mailData, handler);
+  return sgMailer.send(mailData)
+    .then(res => handler(null, res))
+    .catch(err => handler(err, null));
 };
 
 module.exports = {
-  mailer,
+  gmailer,
+  sgMailer,
   mailWithDefaults,
 };
