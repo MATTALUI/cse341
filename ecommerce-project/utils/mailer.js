@@ -35,10 +35,10 @@ const mailWithDefaults = (to, callback, options={}) => {
    }
 };
 
-  // gmailer.sendMail(mailData, handler);
-  return sgMailer.send(mailData)
-    .then(res => handler(null, res))
-    .catch(err => handler(err, null));
+  return gmailer.sendMail(mailData, handler);
+  // return sgMailer.send(mailData)
+  //   .then(res => handler(null, res))
+  //   .catch(err => handler(err, null));
 };
 
 module.exports = {
