@@ -7,11 +7,13 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "_start": "nodemon index.js",
+    "start": "node prove08/app.js",
     "test": "node test.js",
     "prove01": "nodemon prove01/app.js",
     "prove02": "nodemon ecommerce-project/app.js",
     "prove03": "nodemon ecommerce-project/app.js",
+    "prove08": "nodemon prove08/app.js",
     "ecommerce": "nodemon ecommerce-project/app.js"
   },
   "dependencies": {

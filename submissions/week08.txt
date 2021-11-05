@@ -1,0 +1,30 @@
+After completing the assignment, be sure to push to Github and Heroku.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application (e.g., Heroku):
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+https://github.com/MATTALUI/cse341/tree/master/ecommerce-project
+
+3. Briefly list and describe the elements of the application that are functioning.
+- All elements are working
+- Data is ready from week 3 JSON file
+- Data is paginated and buttons for navigation work
+- Only 10 results are shown at a time
+
+4. Briefly describe any pieces of the assignment that are not yet working correctly.
+- None everything works well.
+
+5. Briefly describe the "coolest" thing you learned while completing this assignment.
+- I did a lot of the pagination by hand. Writing the math for all the pagination was a fun learning curve for me.
+
+6. If you could change this assignment to be more effective or helpful, what would you change?
+- The assignment was kind of disappointing. It also seems like it's not that important and it even says so. I would have rather not had this assignment at all, and instead had more time to work on the team project stuff we want to implement, since it seems like that's higher value.
+
+7. Please select the category you feel best describes your assignment:
+- 5 - Shows creativity and excels above and beyond requirements
+
+8. Provide a brief justification (1-2 sentences) for selecting that category.
+- MVC pattern is used to read the JSON data and display it properly
+- Pagination works properly including first, previous, current, next, last
+- Pretty Bootstrap styles

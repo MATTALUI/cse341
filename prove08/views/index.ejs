@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Prove 08</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Prove 08</h1>
+          <div class="d-flex justify-content-center">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="/">First</a></li>
+              <li class="page-item"><a class="page-link" href="<%=prevPage ? `/?page=${prevPage}` : ''%>">Previous</a></li>
+              <li class="page-item active" aria-current="page">
+                <span class="page-link"><%= currentPage %></span>
+              </li>
+              <li class="page-item"><a class="page-link" href="/?page=<%=nextPage%>">Next</a></li>
+              <li class="page-item"><a class="page-link" href="/?page=<%=totalPages%>">Last</a></li>
+            </ul>
+          </div>
+          <ul class="list-group">
+            <% items.forEach((item) => {%>
+              <div class="media list-group-item d-flex bg-light">
+                <div class="media-left me-3">
+                  <a href="#">
+                    <img class="media-object" src="<%= item.imageUrl %>" alt="image">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <span class="media-heading">
+                    <span class="media-title"><%= item.name %></span>
+                    <span class="media-price">$<%= item.price %></span>
+                  </span>
+                  <p>
+                    <%= item.description %>
+                  </p>
+                  <div class="media-tags">
+                    <% item.tags.forEach(tag => {%>
+                      <span class="badge bg-secondary">
+                        <%= tag %>
+                      </span>
+                    <% }); %>
+                  </div>
+
+                </div>
+              </div>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
