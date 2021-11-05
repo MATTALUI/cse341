@@ -2,6 +2,7 @@ After completing the assignment, be sure to push to Github and Heroku.
 Please answer the questions in this text file and submit it to I-Learn.
 
 1. Copy and paste the URL for your web application (e.g., Heroku):
+https://mhummer-cse341.herokuapp.com/
 
 2. Copy and paste the URL for your source code repository (e.g., GitHub):
 https://github.com/MATTALUI/cse341/tree/master/ecommerce-project
