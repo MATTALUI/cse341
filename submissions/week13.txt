@@ -1,0 +1,45 @@
+After completing the assignment, be sure to push to Github and Heroku.
+Please answer the questions in this text file and submit it to I-Learn.
+
+1. Copy and paste the URL for your web application (e.g., Heroku):
+- https://litzen.herokuapp.com
+
+2. Copy and paste the URL for your source code repository (e.g., GitHub):
+- https://github.com/MATTALUI/cse341-team02
+
+3. Copy and paste the URL for your video demonstrating your app (e.g., YouTube):
+- https://www.youtube.com/watch?v=YqioWpI2egI
+
+4. Briefly list and describe the elements of the application that are functioning.
+- Users can sign up and sign in
+- Users can add a list of email addresses they can have notifications sent to
+- Users can add a list of phone numbers they want notifications sent to
+- Users can confirm their contact methods
+- Users can join organizations and groups
+- users can manage their preferences for each group
+- Admin users can post messages to groups
+- Created messages are sent to subscribers via their preferred methods
+
+5. Briefly describe any pieces of the assignment that are not yet working correctly.
+- None. We've got through all of our MVP goals.
+
+6. Briefly describe the "coolest" thing you learned while completing this assignment.
+- This assignment had a lot of interactions with external APIs. Sending emails
+  and texts go through their own APIs. Though we didn't get time to implement them,
+  we also looked into other contact APIs including slack and ones that will send snail mail!
+
+7. If you could change this assignment to be more effective or helpful, what would you change?
+- Having to rank our team members every week is dirty.
+
+8. Please select the category you feel best describes your assignment:
+- 5 - Shows creativity and excels above and beyond requirements
+
+9. Provide a brief justification (1-2 sentences) for selecting that category.
+- Everything professional-looking, organization/navigation is good.
+- Accomplishes an obvious task and provides a good user experience.
+- Dynamic routing and middleware are used well
+- App Uses CORs, CSRF protection, route protection, and code does not contain sensitive information
+- App uses client side JS and async requests
+- A database and external API are used for CRUD
+- Extra authentication functionality (group admins)
+- Shows creativity and excels
